@@ -36,23 +36,23 @@ app.get('/users', (req,res) => {
   res.json(users)
 })
 
-app.post('/users', (req,res) => {
-  try{
-    const salt = await bcrypt.genSalt()
-    const hashedPass = await bcrypt.hash(req.body.password, salt)
-    console.log(salt)
-    console.log(hashedPass)
-    const user = {name: req.body.name, password: req.body.hashedPass }
-    users.push(user)
-   res.status(201).send()
-  }
+// app.post('/users', (req,res) => {
+//   try{
+//     const salt = await bcrypt.genSalt()
+//     const hashedPass = await bcrypt.hash(req.body.password, salt)
+//     console.log(salt)
+//     console.log(hashedPass)
+//     const user = {name: req.body.name, password: req.body.hashedPass }
+//     users.push(user)
+//    res.status(201).send()
+//   }
+
+//   catch{
+//     res.status(500).send()
+//   }
   
-  catch{
-    res.status(500).send()
-  }
   
-  
-})
+// })
 
 app.listen(PORT, () => {
   console.log('Let\'s get this sheit! TOTM', PORT)
