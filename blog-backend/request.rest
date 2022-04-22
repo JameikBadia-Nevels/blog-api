@@ -1,16 +1,13 @@
-GET http://localhost:3005/users
+GET http://localhost:3005/blog/users
 
 ###
 
 
-POST http://localhost:3005/users
+POST http://localhost:3005/blog/users
 Content-Type: : application/json
-
-
 
 {
     "name": "Kyle", 
     "password": "password"
 }
-
-
+ ###

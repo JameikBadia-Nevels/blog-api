@@ -2,6 +2,8 @@ const express = require('express');
 // const { findOneAndUpdate } = require('../models/Blog');
 const router = express.Router();
 const Blog = require('../models/blog')
+const users = [{}]
+const bcrypt = require('bcrypt')
 
 
 ///index
@@ -38,6 +40,27 @@ router.get('/:id', (req, res)=>{
         res.json(foundPost);
     });
 });
+
+//user routes
+
+router.get('/users', (req,res) => {
+    res.json(users)
+  })
+
+router.post('/users', async (req,res) => {
+    try{
+      const hashedPass = await bcrypt.hash(req.body.password, 10)
+      console.log(hashedPass)
+      const user = {name: req.body.name, password: hashedPass }
+      users.push(user)
+     res.status(201).send()
+    }
+  
+    catch{
+      res.status(500).send()
+    }
+  
+  })
 
 
 

@@ -5,8 +5,6 @@ const mongoose = require('mongoose')
 const db = mongoose.connection
 const app = express();
 const cors = require('cors')
-const users = []
-const bcrypt = require('bcrypt')
 
 // Environment Variables (getting ready for Heroku)
 const mongoURI = process.env.MONGODB_URI 
@@ -32,27 +30,6 @@ app.use(express.json())
 const postsController = require('./controllers/blog.js');
 app.use('/blog', postsController);
 
-app.get('/users', (req,res) => {
-  res.json(users)
-})
-
-// app.post('/users', (req,res) => {
-//   try{
-//     const salt = await bcrypt.genSalt()
-//     const hashedPass = await bcrypt.hash(req.body.password, salt)
-//     console.log(salt)
-//     console.log(hashedPass)
-//     const user = {name: req.body.name, password: req.body.hashedPass }
-//     users.push(user)
-//    res.status(201).send()
-//   }
-
-//   catch{
-//     res.status(500).send()
-//   }
-  
-  
-// })
 
 app.listen(PORT, () => {
   console.log('Let\'s get this sheit! TOTM', PORT)
